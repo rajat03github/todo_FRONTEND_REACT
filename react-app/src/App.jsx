@@ -4,6 +4,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
+import { Toaster } from "react-hot-toast";
+
+export const server = "https://todoapp-i3vc.onrender.com/api";
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }
