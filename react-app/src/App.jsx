@@ -5,10 +5,31 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
 import { Toaster } from "react-hot-toast";
+import { useContext, useEffect } from "react";
+import axios from "axios";
+import { Context } from "./main";
 
 export const server = "https://todoapp-i3vc.onrender.com/api";
 
 function App() {
+  const { setUser, setIsAuthenticated } = useContext(Context);
+
+  useEffect(() => {
+    axios
+      .get(`${server}/users/me`, {
+        withCredentials: true,
+      }) //user is present as array and now stored in context
+      .then((res) => {
+        setUser(res.data.user);
+        setIsAuthenticated(true);
+      })
+      .catch((error) => {
+        setUser({});
+        error.response.data.message;
+        setIsAuthenticated(false);
+      });
+  }, []);
+
   return (
     <BrowserRouter>
       <Header />
