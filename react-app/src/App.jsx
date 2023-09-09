@@ -12,9 +12,10 @@ import { Context } from "./main";
 export const server = "https://todoapp-i3vc.onrender.com/api";
 
 function App() {
-  const { setUser, setIsAuthenticated } = useContext(Context);
+  const { setUser, setIsAuthenticated, setLoading } = useContext(Context);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${server}/users/me`, {
         withCredentials: true,
@@ -22,11 +23,12 @@ function App() {
       .then((res) => {
         setUser(res.data.user);
         setIsAuthenticated(true);
+        setLoading(false);
       })
       .catch((error) => {
         setUser({});
-        error.response.data.message;
         setIsAuthenticated(false);
+        setLoading(false);
       });
   }, []);
 

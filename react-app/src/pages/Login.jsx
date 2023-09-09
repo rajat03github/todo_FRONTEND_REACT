@@ -63,7 +63,10 @@ const Login = () => {
             Login
           </button>
           <h4>Or</h4>
-          <Link to={"/register"}>SignUp</Link>
+
+          <Link to={"/register"}>
+            <button>Sign up</button>
+          </Link>
         </form>
       </section>
     </div>

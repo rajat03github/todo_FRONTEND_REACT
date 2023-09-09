@@ -71,7 +71,9 @@ const Register = () => {
             Sign up
           </button>
           <h4>Or</h4>
-          <Link to={"/login"}>Login</Link>
+          <Link to={"/login"}>
+            <button>Login</button>
+          </Link>
         </form>
       </section>
     </div>
